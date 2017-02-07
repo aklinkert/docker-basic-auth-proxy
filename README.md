@@ -6,6 +6,18 @@ This image is available at docker hub as `apinnecke/basic-auth-proxy`
 
 ## Example docker-compose.yml
 
-```yml
+```yaml
+version: "2"
+services:
+  nginx:
+    image: apinnecke/basic-auth-proxy
+    build: ./docker-basic-auth-proxy
+    volumes:
+     - ./htpasswd:/htpasswd
+    ports:
+     - "8080:80"
+    environment:
+     - TARGET=www.google.de
+     - BASIC_AUTH_FILE=/htpasswd
 
 ```
